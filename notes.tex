@@ -1365,7 +1365,7 @@ where the 2-variable function is not continuous no matter how you assign the val
 (do a change of variable: let $x(t)=\tan ^{-1}(t)$ to get the result), but reversing it we have, by symmetry, $-\frac{\pi}{4}$.
 \end{example}
 \begin{notation}
-$C^n$ means set of continuous functions that are $n$ time differentiable with its $n$-th derivative continuous.
+$C^n$ means set of continuous functions that are $n$ time differentiable with its $n$th derivative continuous.
 \end{notation}
 
 \begin{example}[Motivation for next theorem]
@@ -1687,7 +1687,7 @@ We will review Hilbert's construction of the curve (1891), the very first exampl
 
 Terminology:
 \begin{itemize}
-    \item A \textit{curve} in $\mathbb R^2$ is a continous map $\beta:[0,1]\rightarrow \mathbb R^2$, $t\mapsto \beta(t)=(\beta_1(t),\beta_2(t))$
+    \item A \textit{curve} in $\mathbb R^2$ is a continuous map $\beta:[0,1]\rightarrow \mathbb R^2$, $t\mapsto \beta(t)=(\beta_1(t),\beta_2(t))$
     \item It's useful recalling that $\beta$ is \textit{continuous} at $t_0\in [0,1]$ if
     \[
     \forall \varepsilon >0, \ \exists \delta_\varepsilon>0: |t-t_0|<\delta_\varepsilon \Rightarrow |\beta(t)-\beta(t_0)|<\varepsilon ,
@@ -1756,7 +1756,7 @@ For parametrisation of $\gamma_2$, we notice
 &A_3 \gamma_1 (4t-3), &\qquad \frac34\leq t\leq 1 
 \end{aligned}\right. ,
 \]
-(basically speed it up in the smaller squares and impose lags to make sure every part of it satisfy the original parametrisation with $t$ ranging from 0 to 1). So we don't need to invent a new parametrisation. Notice $\gamma_2$ goes through all 16 squares and spend $\frac{1}{16}$ of the time in each of it. Let us treat $0.m_1m_2$ now as quarternary fractions:
+(basically speed it up in the smaller squares and impose lags to make sure every part of it satisfy the original parametrisation with $t$ ranging from 0 to 1). So we don't need to invent a new parametrisation. Notice $\gamma_2$ goes through all 16 squares and spend $\frac{1}{16}$ of the time in each of it. Let us treat $0.m_1m_2$ now as quaternary fractions:
 \[
 0.m_1m_2 = m_1 \times 4^{-1}+m_2\times 4^{-2}= \frac{m_1}{4}+\frac{m_2}{16},
 \]
@@ -1928,7 +1928,7 @@ f_{n+1}(x) := \left\{\begin{aligned}&\frac12 f_n (3x) \qquad &0\leq x \leq \frac
     \frac13+2\frac{1}{3^2}+4\frac{1}{3^3}+\cdots =\sum_{k=0}^\infty \frac13\cdot \frac{2}{3}^k =\frac{\frac13}{1-\frac23} =1.
     \]
 \end{enumerate}
-The set $C:=[0,1]\backslash E$ is called Cantor set. Its total length is zero, yet $f:C\rightarrow [0,1]$ is a surjectivity: a standard example in measure theory, fractal geometry, analysis, ...
+The set $C:=[0,1]\backslash E$ is called Cantor set. Its total length is zero, yet $f:C\rightarrow [0,1]$ is surjective: a standard example in measure theory, fractal geometry, analysis, ...
 
 \begin{remark}
 Please take a look at the exercises at the end of week 6 notes, giving a more analytic characteristic of Cantor set and a formula for Cantor function.
@@ -2061,7 +2061,7 @@ This is called Cauchy–Riemann equations.
     \]
     which we claim does not exist. Take $h=\rho e^{i\phi}$, then $\frac{\overline{h}}{h} = e^{-2i\phi}$ depends on angle of approach.
     
-    It's also reasonable to check if Cauchy–Riemann can verify of this non-differentibility. We write $g=u+iv$ where $u(x,y)=x$ and $v(x,y)=-y$. Then $u_x=1\neq v_y=-1$.
+    It's also reasonable to check if Cauchy–Riemann can verify of this non-differentiability. We write $g=u+iv$ where $u(x,y)=x$ and $v(x,y)=-y$. Then $u_x=1\neq v_y=-1$.
 \begin{remark}
 However, as a function on $\mathbb R^2 \rightarrow \mathbb R^2$, $\begin{pmatrix}x\\y\end{pmatrix}\mapsto \begin{pmatrix}x\\-y\end{pmatrix}$ is differentiable by existence and continuity of its partial derivatives.
 \end{remark}
@@ -2268,7 +2268,7 @@ We know $(z^n)' = n z^{n-1}$. Consider $\displaystyle \sum_{n=1}^\infty n a_n z^
 \[
 \limsup_{n\rightarrow \infty} \left| n a_n \right|^{\frac1n} = \limsup_{n\rightarrow \infty} \underbrace{n^{\frac1n}}_{\rightarrow 1: n^{\frac1n} = e^{\frac1n \log n}} |a_n|^{\frac1n} = \limsup_{n\rightarrow \infty} |a_n|^{\frac1n},
 \]
-i.e. the two series on two sides of statement share the same radius of convergence $R$. We can therefore say $\displaystyle \sum_{n=0}^\infty a_n z^n$ converges pointwise and $\displaystyle \sum_{n=1}^\infty n a_n z^{n-1}$ converges uniformly on $\mathbb B_R(0):$ the condition for interchange of limit and derivative, i.e. termwise differentialbility (Theorem 3.2.10):
+i.e. the two series on two sides of statement share the same radius of convergence $R$. We can therefore say $\displaystyle \sum_{n=0}^\infty a_n z^n$ converges pointwise and $\displaystyle \sum_{n=1}^\infty n a_n z^{n-1}$ converges uniformly on $\mathbb B_R(0):$ the condition for interchange of limit and derivative, i.e. termwise differentiability (Theorem 3.2.10):
 \[
 \left(\sum_{n=0}^\infty a_n z^n\right)' = \sum_{n=0}^\infty \left(a_n z^n\right)' = \sum_{n=1}^\infty n a_n z^{n-1}.
 \]
