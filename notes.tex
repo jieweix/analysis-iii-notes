@@ -9,6 +9,7 @@
 \usepackage{caption}
 \usepackage{mathdots}
 \usepackage{geometry}
+\usepackage{hyperref}
 
 \usetikzlibrary{calc,arrows,decorations.markings,decorations.pathreplacing,pgfplots.fillbetween}
 \tikzset{overbrace/.style={decoration={brace,raise=1.8mm},decorate}}
@@ -167,6 +168,7 @@ By definition integrable functions are boring. Next step: build classes of integ
 \end{defn}
 
 \begin{thm}
+\label{thm:refineineq}
 	$f\in \mathcal B [a,b]$, $P,Q\in \mathcal P$. If $Q$ is a refinement of $P$, then
 \[
 L(f,P)\leq L(f,Q) \leq U(f,Q)\leq U(f,P) .
@@ -192,7 +194,7 @@ Similarly we can prove $U(f,Q)\leq I(f,P) .$
 \end{thm}
 
 \begin{proof}
-	Let $R$ be a refinement of $P,Q$ [$R=P\cup Q$]. From Theorem 1.1.8,
+	Let $R$ be a refinement of $P,Q$ [$R=P\cup Q$]. From Theorem \ref{thm:refineineq},
 \[
 L(f,P)\leq L(f,R)\leq U(f,R)\leq U(f,Q) .
 \]
@@ -207,6 +209,7 @@ L(f,P)\leq L(f,R)\leq U(f,R)\leq U(f,Q) .
 \end{proof}
 
 \begin{thm}
+\label{thm:integrableineq}
 	$f\in \mathcal B [a,b]$ is integrable if and only if $\forall \varepsilon >0, \exists P : U(f,P)-L(f,P)<\varepsilon .$
 \end{thm}
 
@@ -240,10 +243,11 @@ Since $f$ is integrable, $L(f)=U(f)$, so $U(f,P)-L(f,P) < \varepsilon .$
 \end{thm}
 
 \begin{proof}
-	[Handwavy proof] Set $\varepsilon =\frac1n$ and use Theorem 1.1.11.
+	[Handwavy proof] Set $\varepsilon =\frac1n$ and use Theorem \ref{thm:integrableineq}.
 \end{proof}
 
 \begin{defn}
+\label{defn:unicont}
 	$f:\Omega \rightarrow \mathbb R$ is \textit{uniformly continuous} if
 \[
 \forall \varepsilon >0, \exists \delta (\varepsilon): (x,y\in \Omega, |x-y|<\delta (\varepsilon)) \Rightarrow |f(x)-f(y)|<\varepsilon .
@@ -251,6 +255,7 @@ Since $f$ is integrable, $L(f)=U(f)$, so $U(f,P)-L(f,P) < \varepsilon .$
 \end{defn}
 
 \begin{thm}[Continuity and uniform continuity coincide on closed bounded intervals]
+\label{thm:closedboundedintcontisunicont}
 	Let $f\in \mathcal C [a,b]$, then $f$ is uniformly continuous.
 \end{thm}
 
@@ -263,6 +268,7 @@ Since $f$ is integrable, $L(f)=U(f)$, so $U(f,P)-L(f,P) < \varepsilon .$
 \end{remark}
 
 \begin{thm}[$\ast$]
+\label{thm:contonclosedintisint}
 	Let $f:[a,b]\rightarrow \mathbb R$ be continuous. Then $f$ is integrable.
 \end{thm}
 
@@ -275,10 +281,11 @@ Let $P=\{I_1,\ldots,I_n\}$ be a partition of $[a,b]$ such that $|I_k|<\delta$. $
 \[
 U(f,P)-L(f,P) = \sum_{k=1}^{n}(M_k-m_k)|I_k| \leq \sum_{k=1}^n \frac{\varepsilon}{b-a}|I_k|=\frac{\varepsilon}{b-a}(b-a)=\varepsilon \quad \forall \varepsilon>0 ,
 \]
-hence by Theorem 1.1.11 $f$ is integrable.
+hence by Theorem \ref{thm:integrableineq} $f$ is integrable.
 \end{proof}
 
 \begin{thm}
+\label{thm:monoimpint}
 	$f:[a,b]\rightarrow \mathbb R$ is monotonic. Then $f$ is integrable. [It doesn't have to be continuous!]
 \end{thm}
 \begin{proof}
@@ -292,7 +299,7 @@ WLOG, let $f$ be increasing. Then
 		U(f,P)-L(f,P)&=\sum_{k=1}^n \left( \underset{I_k}{\sup} f-\underset{I_k}{\inf} f \right) \frac{b-a}{n} \\ &=\frac{b-a}{n} \underbrace{\sum_{k=1}^n f\left( a+\frac{b-a}{n}k \right)-f\left( a+\frac{b-a}{n}(k-1)) \right)}_{\text{telescopic}} \\&= \frac{b-a}{n}(f(b)-f(a)) \rightarrow 0 .
 	\end{aligned}
 \]
-Therefore by Theorem 1.1.11 $f$ is integrable.
+Therefore by Theorem \ref{thm:integrableineq} $f$ is integrable.
 \end{proof}
 
 Now we can integrate functions that cannot be visualized.
@@ -308,7 +315,7 @@ It's well-defined as $\sum_{k\geq 1} \frac1{g^k} < \infty$. Also $f$ is increasi
 \[
 f(x+\delta)-f(x) = \sum_{k:\left\{\begin{aligned}r_k&<x+\delta\\ r_k&\geq x\end{aligned}\right.} \frac{1}{2^k} \geq 0 .
 \]
-Hence $f$ is integrable by Theorem 1.1.16.
+Hence $f$ is integrable by Theorem \ref{thm:monoimpint}.
 \end{example}
 
 \subsection{Properties of Riemann integral}
@@ -397,7 +404,7 @@ m\leq \frac1{b-a}\int_a^b f \leq M.
 \]
 \end{thm}
 \begin{proof}[Hint for proof]
-	First prove $\sup |f| - \inf |f| \leq \sup f - \inf f$. Then integrability follows from Theorem 1.1.11. The inequality follows from $-|f| \leq f \leq |f|$ and the monotonicity.
+	First prove $\sup |f| - \inf |f| \leq \sup f - \inf f$. Then integrability follows from Theorem \ref{thm:integrableineq}. The inequality follows from $-|f| \leq f \leq |f|$ and the monotonicity.
 \end{proof}
 
 \begin{thm}[Additivity]
@@ -463,6 +470,7 @@ Since $\varepsilon$ is arbitrary, we conclude that
 \end{proof}
 
 \begin{thm}
+\label{compofcontandintisint}
 	$f:[a,b]\rightarrow \mathbb R$ is integrable. $\varphi: \mathbb R \rightarrow \mathbb R$ is continuous. Then $\varphi \circ f:[a,b]\rightarrow \mathbb R$ is integrable.
 \end{thm}
 \begin{proof}
@@ -595,6 +603,7 @@ which is consistent with additivity.
 \end{remark}
 
 \begin{thm}
+\label{thm:intiscont}
 Let $f:[a,b]\rightarrow \mathbb R$ be integrable, define $F:[a,b]\rightarrow \mathbb R, x\mapsto \int_a^x f$. Then $F\in \mathcal C [a,b]$. Moreover, if $x\in (a,b)$ and $f$ is continuous at $x$, $F'(x)=f(x)$.
 \end{thm}
 \begin{proof}
@@ -618,6 +627,7 @@ Hence the desired result.
 \end{proof}
 
 \begin{thm}
+\label{thm:boundlimofintf}
 Let $f:[a,b]\rightarrow \mathbb R$ be integrable. If $f$ is right-continuous at $a$,
 \[
 \lim_{h\rightarrow 0+} \frac1h \int_a^{a+h} f=f(a).
@@ -639,7 +649,7 @@ $f$ is right-continuous at $a$ means $\forall \varepsilon >0, \exists \delta >0:
 The proof is similar for the second part.
 \end{proof}
 \begin{remark}
-Theorem 1.3.2 and 1.3.3 together mean that $f$ is differentiable at any $x\in [a,b] : f$ is continuous at $x$.
+Theorem \ref{thm:intiscont} and \ref{thm:boundlimofintf} together mean that $f$ is differentiable at any $x\in [a,b] : f$ is continuous at $x$.
 \end{remark}
 The definition of $\int_a^b f$ $\forall a,b\in \mathbb R$ allowed us to avoid looking at 1-sided limits for $x\in (a,b)$.
 \begin{example}
@@ -658,7 +668,7 @@ $f,g:[a,b]\rightarrow \mathbb R$ are continuous, differentiable on $(a,b)$ such 
 \]
 \end{thm}
 \begin{proof}
-$fg'$, $f'g$ and $(fg)'=f'g+fg'$ are all integrable as sums of products of integrable functions by Theorem 1.2.7. Then
+$fg'$, $f'g$ and $(fg)'=f'g+fg'$ are all integrable as sums of products of integrable functions by Theorem \ref{compofcontandintisint}. Then
 \[
 \begin{aligned}
     \int_a^b (fg)'&=f(b)g(b)-f(a)g(a) \qquad \text{by FTC}\\
@@ -690,7 +700,7 @@ For $x\in f([a,b])$, define
 \[
 G(x)=\int_{f(a)}^x g(t) \ \mathrm d t
 \]
-which is continuous at $x$, so $G$ is differentiable and $G'(x)=g(x)$ by Theorem 1.3.2. Chain rule gives
+which is continuous at $x$, so $G$ is differentiable and $G'(x)=g(x)$ by Theorem \ref{thm:intiscont}. Chain rule gives
 \[
 \frac{\mathrm d}{\mathrm d x}G(f(x))=g(f(x))\cdot f'(x)
 \]
@@ -1153,6 +1163,7 @@ $\|\cdot\|_\infty$ is a norm on the space of bounded functions on $\Omega$, deno
 \end{remark}
 
 \begin{thm}[Uniform continuity preserves continuity]
+\label{thm:unicontpreservescont}
 A sequence of continuous functions $(f_n):\Omega \rightarrow \mathbb R,\ n\geq 1$ converges uniformly to $f:\Omega \rightarrow \mathbb R$. Then $f$ is continuous on $\Omega$.
 \end{thm}
 \begin{proof}
@@ -1165,6 +1176,7 @@ $f_n\rightrightarrows f$ means \begin{equation}\forall \varepsilon >0, \ \exists
 $\mathcal C_b (\Omega, \|\cdot\|_\infty)$ is a linear space of continuous, bounded functions on $\Omega$, equipped with $\|\cdot \|_\infty$ norm. ($\infty$-dim normed space)
 \end{notation}
 \begin{thm}[Completeness]
+\label{thm:completeness}
 $\mathcal C_b (\Omega, \|\cdot\|_\infty)$ is a complete normed space, i.e. any Cauchy sequence $(f_n)\subset \mathcal C_b(\Omega)$ converges to some $f\in \mathcal C_b (\Omega)$.
 
 Without using all the jargon: a uniformly Cauchy sequence of continuous bounded functions converges to a continuous and bounded function.
@@ -1174,10 +1186,10 @@ A Cauchy sequence $(a_n)\subset \underbrace{(V,\|\cdot\|)}_{\text{normed space}}
 \[
 \forall \varepsilon >0,\ \exists N_\varepsilon : n,m>N_\varepsilon \Rightarrow \|a_n-a_m\|<\varepsilon .
 \]
-This definition ensures that the two formulated versions of Theorem 3.1.13 are equivalent.
+This definition ensures that the two formulated versions of Theorem \ref{thm:completeness} are equivalent.
 \end{remark}
 \begin{proof}
-$f_n \rightrightarrows f$ and $f_n$ is continuous $\forall n$, so by Theorem 3.1.12 $f$ is continuous.
+$f_n \rightrightarrows f$ and $f_n$ is continuous $\forall n$, so by Theorem \ref{thm:unicontpreservescont} $f$ is continuous.
 
 We can pick $n:\|f-f_n\|_\infty \leq 1$. Then
 \[
@@ -1190,6 +1202,7 @@ Therefore $f$ is also bounded.
 $f_n=\frac{1}{2n} \mathcal X_{[-n,n]}$ on $\mathbb R$. Then $\|f_n\|_\infty = \frac{1}{2n} \rightarrow 0$. So $f_n \rightrightarrows 0$. And $\int_{-\infty}^\infty f_n=1\neq \int_{-\infty}^\infty \lim_{n\rightarrow \infty} f_n$. But good news is on bounded interval this inequality does not occur.
 \end{example}
 \begin{thm}
+\label{thm:uniconvintegrable}
 $f_n:[a,b]\rightarrow \mathbb R$ is integrable $\forall n$ and $f_n \rightrightarrows f:[a,b]\rightarrow \mathbb R$. Then $f$ is integrable and $\int_a^b f_n \rightarrow \int_a^b f$. (i.e.
 \[
 \lim_{n\rightarrow \infty} \int_a^b f_n = \int_a^b \lim_{n\rightarrow \infty} f_n,
@@ -1242,14 +1255,15 @@ $f:\Omega \subset \mathbb R^2 \rightarrow \mathbb R$ is \textit{uniformly contin
 \forall \varepsilon >0,\ \exists \delta_\varepsilon : (x,y\in \Omega: |x-y|<\delta_\varepsilon) \Rightarrow |f(x)-f(y)|<\varepsilon .
 \]
 \end{defn}
-This is the same with Definition 1.1.13.
+This is the same with Definition \ref{defn:unicont}.
 \begin{thm}
 $\Omega \subset \mathbb R^2$ closed and bounded. If $f:\Omega \rightarrow \mathbb R$ is continuous then it's uniformly continuous.
 \end{thm}
 \begin{proof}[Hint for proof]
-Use Bolzano-Weierstrass theorem for bounded sequences in $\mathbb R^2$. (Similar to proof of Theorem 1.1.14.)
+Use Bolzano-Weierstrass theorem for bounded sequences in $\mathbb R^2$. (Similar to proof of Theorem \ref{thm:closedboundedintcontisunicont}.)
 \end{proof}
 \begin{thm}
+\label{thm:partintofcontiscont}
 Let $f:[a,b]\times [c,d]\rightarrow \mathbb R$ be continuous. Define $I:[c,d] \rightarrow \mathbb R$, $t\mapsto \int_a^b  f(x,t) \ \mathrm d x.$ Then $I$ is continuous on $[c,d]$.
 \end{thm}
 \begin{proof}
@@ -1269,6 +1283,7 @@ i.e. $I$ is continuous at $t_0$ by definition.
 \end{proof}
 
 \begin{thm}
+\label{thm:partderivcontimppartintcont}
 $f,\frac{\partial f}{\partial t}:[a,b]\times [c,d]\rightarrow \mathbb R$ are continuous. Then $t\mapsto \int_a^b f(x,t) \ \mathrm d x$ is differentiable on $[c,d]$ and
 \[
 \frac{\partial}{\partial t} \int_a^b f(x,t) \ \mathrm d x = \int_a^b \frac{\partial }{\partial t} f(x,t) \ \mathrm d x .
@@ -1329,7 +1344,7 @@ and
 \[
 y\mapsto \int_a^b f(x,y) \ \mathrm d x .
 \]
-They are continuous and therefore integrable by Theorem 3.2.4. So both sides of the theorem are well-defined.
+They are continuous and therefore integrable by Theorem \ref{thm:partintofcontiscont}. So both sides of the theorem are well-defined.
 
 Let
 \[
@@ -1344,8 +1359,8 @@ What do we know?
 \[
 \begin{aligned}\left|\int_a^t f(x,y) \ \mathrm d x - \int_a^{t_0} f(x,y_0) \ \mathrm d x \right|&=\left|\int_a^t (f(x,y)-f(x,y_0)) \ \mathrm d x -\int_t^{t_0} f(x,y_0) \ \mathrm d x\right|\\&\leq \int_a^t |f(x,y)-f(x,y_0)| \ \mathrm d x + \left|\int_t^{t_0}f(x,y_0) \ \mathrm d x \right| \\ &\leq \underbrace{\int_a^t |f(x,y) -f(x,y_0)| \ \mathrm d x}_{\text{estimate it with uniform continuity of }f} + M|\underbrace{t-t_0}_{\rightarrow 0}| . \end{aligned}
 \]
-So by Theorem 3.2.4 second term is continuous.
-    \item By FTC derivative of $t\mapsto \int_a^t \left( \int_c^d f(x,y) \ \mathrm d y\right) \mathrm d x$ is $\int_c^d f(t,y) \ \mathrm d y$, and by Theorem 3.2.5 derivative of $t\mapsto \int_c^d \left(\int_a^t f(x,y) \ \mathrm d x \right) \mathrm d y$ is equal to
+So by Theorem \ref{thm:partintofcontiscont} second term is continuous.
+    \item By FTC derivative of $t\mapsto \int_a^t \left( \int_c^d f(x,y) \ \mathrm d y\right) \mathrm d x$ is $\int_c^d f(t,y) \ \mathrm d y$, and by Theorem \ref{thm:partderivcontimppartintcont} derivative of $t\mapsto \int_c^d \left(\int_a^t f(x,y) \ \mathrm d x \right) \mathrm d y$ is equal to
 \[
 \int_c^d \left(\frac{\partial}{\partial t} \int_a^t f(x,y) \ \mathrm d x \right) \mathrm d y =\int_c^d f(t,y) \ \mathrm d y.
 \]
@@ -1400,6 +1415,7 @@ But $|x|$ is not differentiable at 0.
 \end{example}
 
 \begin{thm}
+\label{thm:interchalimwderiv}
 $(f_n)\subset C^1 [a,b]$. Suppose $f_n \longrightarrow f:[a,b]\rightarrow \mathbb R$ and $f_n' \rightrightarrows g:[a,b]\rightarrow \mathbb R$. Then $f \in C^1 [a,b]$ and $f'=g$.
 
 In other words,
@@ -1410,7 +1426,7 @@ In other words,
 \begin{proof}
 We have $(f_n') \subset C[a,b]$. Since $g$ is the uniform limit, $g\in C[a,b]$ is integrable. We write
 \[
-\int_a^x g = \int_a^x \lim_{n\rightarrow \infty} f_n' \underbrace{=}_{\text{Theorem 3.1.15}} \lim_{n\rightarrow \infty} \int_a^x f_n' \underbrace{=}_{\text{FTC}} \lim_{n\rightarrow \infty} \left(f_n(x)-f_n(a)\right) = f(x)-f(a),
+\int_a^x g = \int_a^x \lim_{n\rightarrow \infty} f_n' \underbrace{=}_{\text{Theorem \ref{thm:uniconvintegrable}}} \lim_{n\rightarrow \infty} \int_a^x f_n' \underbrace{=}_{\text{FTC}} \lim_{n\rightarrow \infty} \left(f_n(x)-f_n(a)\right) = f(x)-f(a),
 \]
 i.e. $f(x)=f(a)+\int_a^x g$, so $f'(x)=g(x)$ by FTC. Since $g$ is continuous, $f\in C^1[a,b]$.
 \end{proof}
@@ -1429,6 +1445,7 @@ be the sequence of partial sums. We say that $\displaystyle \sum_{k=1}^\infty f_
 \end{defn}
 
 \begin{thm}
+\label{thm:tbtint}
 Let $(f_n)$ be a sequence of integrable functions on $[a,b]$ such that $\displaystyle \sum_{k=1}^\infty f_k$ converges uniformly. Then
 \[
 \sum_{k=1}^\infty f_k\quad :[a,b]\rightarrow \mathbb R
@@ -1444,7 +1461,7 @@ Consider
 \[
 S_n := \sum_{k=1}^n f_k,\qquad S:=\sum_{k=1}^\infty f_k
 \]
-and we know $S_n \rightrightarrows S$. By linearity $S_n$ is integrable. By Theorem 3.1.15, $S$ is then integrable, and moreover
+and we know $S_n \rightrightarrows S$. By linearity $S_n$ is integrable. By Theorem \ref{thm:uniconvintegrable}, $S$ is then integrable, and moreover
 \[
 \int_a^b S = \lim_{n\rightarrow \infty}\int_a^b S_n .
 \]
@@ -1476,13 +1493,14 @@ since it's geometric. So it's Cauchy therefore it's uniformly convergent. Theref
 \end{aligned}
 \]
 \end{example}
-Checking that applying Theorem 3.3.2 here to improper integrals is legitimate is left as an exercise.
+Checking that applying Theorem \ref{thm:tbtint} here to improper integrals is legitimate is left as an exercise.
 
 \begin{remark}
 We can then integrate any function given by uniformly convergent Taylor or Fourier series and set the answer as an infinite sum.
 \end{remark}
 
 \begin{thm}
+\label{thm:tbtdiff}
 $\displaystyle (f_k) \subset C^1 [a,b] : \sum_{k=1}^\infty f_k$ converges pointwise and $\displaystyle \sum_{k=1}^\infty f_k'$ converge uniformly. Then
 \[
 x\mapsto \sum_{k=1}^\infty f_k \in C^1[a,b]
@@ -1498,7 +1516,7 @@ Let
 \[
 S_n := \sum_{k=1}^n f_k ,\quad S := \sum_{k=1}^\infty f_k
 \]
-Given that $S_n \rightarrow S$, $S_n' \rightrightarrows g$, we have, by Theorem 3.2.10, $S\in C^1[a,b]$ and $\displaystyle S'=\lim_{n\rightarrow \infty} S_n'$.
+Given that $S_n \rightarrow S$, $S_n' \rightrightarrows g$, we have, by Theorem \ref{thm:interchalimwderiv}, $S\in C^1[a,b]$ and $\displaystyle S'=\lim_{n\rightarrow \infty} S_n'$.
 
 We use the fact that $(f_n) \subset C^1[a,b] \Rightarrow S_n= \in C^1[a,b]$ (algebra of differentiable functions).
 
@@ -1895,7 +1913,7 @@ f_{n+1}(x) := \left\{\begin{aligned}&\frac12 f_n (3x) \qquad &0\leq x \leq \frac
 
 \underline{Properties of Cantor function}:
 \begin{enumerate}
-    \item $f:[0,1]\rightarrow [0,1]$ is continuous, monotonically increasing and $f(0)=0,\ f(1)=1$. By IVT $f$ is surjective. Also by Theorem 1.1.15 it's integrable.
+    \item $f:[0,1]\rightarrow [0,1]$ is continuous, monotonically increasing and $f(0)=0,\ f(1)=1$. By IVT $f$ is surjective. Also by Theorem \ref{thm:contonclosedintisint} it's integrable.
     \item Take $\lim_{n\rightarrow \infty} f_n$ we have
     \[
     f(x) := \left\{\begin{aligned}&\frac12 f (3x) \qquad &0\leq x \leq \frac13 \\ &\frac12 \qquad &\frac13 <x < \frac23 \\ &\frac12 + \frac12 f(3x-2) \qquad &\frac23 \leq x \leq 1\end{aligned} \right. ,
@@ -2022,7 +2040,7 @@ Recall in context of multivariable real functions, $f:\mathbb R^n \rightarrow \m
 \[
 \lim_{h\rightarrow 0} \frac{\|f(p+h)-f(p)-Df(p)h\|_k}{\|h\|_n} =0
 \]
-We cannot divide by $h$ as $\mathbb R^n$ is not a field, but $\mathbb C$ is a field, so formula in Definition 1.1.13 is well-defined, albeit it looks more like a definition of $\frac{\partial f}{\partial x}$. Hence it must exist along \underline{any} curve passing through zero. This means we can derive the simplest necessary condition for existence of complex derivative:
+We cannot divide by $h$ as $\mathbb R^n$ is not a field, but $\mathbb C$ is a field, so formula in Definition \ref{defn:unicont} is well-defined, albeit it looks more like a definition of $\frac{\partial f}{\partial x}$. Hence it must exist along \underline{any} curve passing through zero. This means we can derive the simplest necessary condition for existence of complex derivative:
 \[
 \lim_{\Delta x\rightarrow 0} \lim_{\Delta y\rightarrow 0} \frac{f(z+h)-f(z)}{h}=\lim_{\Delta y\rightarrow 0} \lim_{\Delta x\rightarrow 0} \frac{f(z+h)-f(z)}{h}
 \]
@@ -2268,7 +2286,7 @@ We know $(z^n)' = n z^{n-1}$. Consider $\displaystyle \sum_{n=1}^\infty n a_n z^
 \[
 \limsup_{n\rightarrow \infty} \left| n a_n \right|^{\frac1n} = \limsup_{n\rightarrow \infty} \underbrace{n^{\frac1n}}_{\rightarrow 1: n^{\frac1n} = e^{\frac1n \log n}} |a_n|^{\frac1n} = \limsup_{n\rightarrow \infty} |a_n|^{\frac1n},
 \]
-i.e. the two series on two sides of statement share the same radius of convergence $R$. We can therefore say $\displaystyle \sum_{n=0}^\infty a_n z^n$ converges pointwise and $\displaystyle \sum_{n=1}^\infty n a_n z^{n-1}$ converges uniformly on $\mathbb B_R(0):$ the condition for interchange of limit and derivative, i.e. termwise differentiability (Theorem 3.2.10):
+i.e. the two series on two sides of statement share the same radius of convergence $R$. We can therefore say $\displaystyle \sum_{n=0}^\infty a_n z^n$ converges pointwise and $\displaystyle \sum_{n=1}^\infty n a_n z^{n-1}$ converges uniformly on $\mathbb B_R(0):$ the condition for interchange of limit and derivative, i.e. termwise differentiability (Theorem \ref{thm:interchalimwderiv}):
 \[
 \left(\sum_{n=0}^\infty a_n z^n\right)' = \sum_{n=0}^\infty \left(a_n z^n\right)' = \sum_{n=1}^\infty n a_n z^{n-1}.
 \]
@@ -2836,6 +2854,7 @@ Parameterise $\gamma_i$ from $p_i$ and $\eta$ from $p_2$ to $p_1$. Note that $\O
 \end{remark}
 
 \begin{thm}
+\label{thm:cauchyintform}
 Let $\gamma \subset \mathbb C$ be a contour (oriented counterclockwise). Suppose $f$ is analytic in $\overline{I(\gamma)}$. Then $\forall z\in I(\gamma)$,
 \[
 f(z) = \frac{1}{2\pi i} \int_\gamma \frac{f(w)}{w-z} \ \mathrm d w,
@@ -2873,6 +2892,7 @@ so the error term vanishes and we have what's desired.
 
 We can generalise this statement.
 \begin{thm}
+\label{thm:cauchydiffform}
 Let $\gamma \subset \mathbb C$ be a contour (oriented counterclockwise). Suppose $f$ is analytic in $\overline{I(\gamma)}$. Then $\forall z\in I(\gamma),\ \forall n\in \mathbb N_0$,
 \[
 f^{(n)}(z) = \frac{n!}{2\pi i} \int_\gamma \frac{f(w)}{(w-z)^{n+1}} \ \mathrm d w,
@@ -2949,7 +2969,7 @@ as desired. We proceed by induction to get the general result: $f''(z)$ exists $
 \[
 f\text{ analytic in }\overline{I(\gamma)} \Rightarrow f' \text{ analytic in }\overline{I(\gamma)}.
 \]
-Therefore $f^{(n)}$ is analytic in $\overline{I(\gamma)}$. So by Theorem 4.6.10,
+Therefore $f^{(n)}$ is analytic in $\overline{I(\gamma)}$. So by Theorem \ref{thm:cauchyintform},
 \[
 \begin{aligned}
 f^{(n)}(z) &= \frac{1}{2\pi i} \int_\gamma \frac{f^{(n)} (w)}{w-z} \ \mathrm d w \\&= \frac{1}{2\pi i} \left(-\int_\gamma f^{(n-1)} (w) \frac{\partial}{\partial w} \frac{1}{w-z} \ \mathrm d w \right) \qquad \text{integration by parts} \\&= \frac{1}{2\pi i} \int_\gamma f^{(n-1)}(w) \frac{1}{(w-z)^2} \ \mathrm d w \\&= \frac{2}{2\pi i} \int_\gamma f^{(n-2)}(w) \frac{1}{(w-z)^3} \ \mathrm d w \qquad \text{integration by parts again} \\&= \cdots \qquad \text{again and again} \\&= \frac{n!}{2\pi i} \int_\gamma f(w)\frac{1}{(w-z)^{n+1}} \ \mathrm d w,
@@ -2987,7 +3007,7 @@ We know $\forall z\in \mathbb B_R(a),\ \exists \gamma \in (|z-a|,R):\mathbb B_r(
 \end{tikzpicture}
 \end{center}
 
-Since $f$ is analytic in $\overline{\mathbb B_r(a)}$, by Theorem 4.6.10 we have
+Since $f$ is analytic in $\overline{\mathbb B_r(a)}$, by Theorem \ref{thm:cauchyintform} we have
 \[
 \begin{aligned}
 f(z) &= \frac{1}{2\pi i} \int_{\partial \mathbb B_r(a)} \frac{f(w)}{w-z} \ \mathrm d w\\
@@ -3010,14 +3030,14 @@ f(z) &= \frac{1}{2\pi i} \int_{\partial \mathbb B_r(a)} \frac{f(w)}{w-a} \sum_{n
 &= \frac{1}{2\pi i} \sum_{n=0}^\infty \int_{\partial \mathbb B_r(a)} \frac{f(w)}{(w-a)(w-a)^n}\ \mathrm d w \ (z-a)^n.
 \end{aligned}
 \]
-By Theorem 4.6.11 this is what's desired. $\partial \mathbb B_r(a)$ can be replaced with any $\gamma$ encompassing $a$ by Contour deformation theorem ($\gamma \subset \mathbb B_R(a)$).
+By Theorem \ref{thm:cauchydiffform} this is what's desired. $\partial \mathbb B_r(a)$ can be replaced with any $\gamma$ encompassing $a$ by Contour deformation theorem ($\gamma \subset \mathbb B_R(a)$).
 
 For uniqueness, suppose
 \[
 f(z) = \sum_{n=0}^\infty b_n (z-a)^n \quad \forall z\in \mathbb B_{\rho}(a) \text{ for some }\rho>0
 \tag{$\ast$}
 \]
-then the right hand side of $(\ast)$ converges uniformly in $\overline{\mathbb B_{\rho'} (a)} \ \forall \rho '<\rho$. So we can differentiate term by term for any $z\in \mathbb B_{\rho'} (a)$. By Theorem 3.3.4, $b_n=\frac{1}{n!} f^{(n)}(a)=c_n$.
+then the right hand side of $(\ast)$ converges uniformly in $\overline{\mathbb B_{\rho'} (a)} \ \forall \rho '<\rho$. So we can differentiate term by term for any $z\in \mathbb B_{\rho'} (a)$. By Theorem \ref{thm:tbtdiff}, $b_n=\frac{1}{n!} f^{(n)}(a)=c_n$.
 \end{proof}
 
 \begin{example}
@@ -3125,7 +3145,7 @@ so $\lim_{n\rightarrow \infty} E_n(z)=0$, i.e.
 \[
 f(z)=\frac{1}{2\pi i} \int_{\partial \mathbb B_r(z)} \frac{f(w)}{w-z} \ \mathrm d w.
 \]
-Note that $f_n|_{\partial \mathbb B_r(z)} \rightrightarrows f|_{\partial \mathbb B_r(z)}$, so $f|_{\partial \mathbb B_r(z)}$ is continuous (on a closed bounded set), hence bounded. From the proof of Theorem 4.6.11 we know that $f'$ exists at every point $z\in \Omega$, i.e. $f$ is analytic.
+Note that $f_n|_{\partial \mathbb B_r(z)} \rightrightarrows f|_{\partial \mathbb B_r(z)}$, so $f|_{\partial \mathbb B_r(z)}$ is continuous (on a closed bounded set), hence bounded. From the proof of Theorem \ref{thm:cauchydiffform} we know that $f'$ exists at every point $z\in \Omega$, i.e. $f$ is analytic.
 \end{proof}
 \subsubsection{Calculation of integrals over $\mathbb R$ using Cauchy's theorem}
 \begin{defn}
@@ -3189,7 +3209,7 @@ By contour deformation theorem,
 where
 \[
 \begin{aligned}
-\int_{\partial \mathbb B_r(z_1)} f &= \sum_{k=1}^{-m} c_k \underbrace{\int_{\partial \mathbb B_r(z_1)} (z-z_1)^k \ \mathrm d z}_{2\pi i\delta_{k,-1}\text{ by Remark before Theorem 4.6.10}} + \underbrace{\int_{\partial \mathbb B_r(z_1)} \phi_1 \ \mathrm d z}_{0\text{ by Cauchy}} \\
+\int_{\partial \mathbb B_r(z_1)} f &= \sum_{k=1}^{-m} c_k \underbrace{\int_{\partial \mathbb B_r(z_1)} (z-z_1)^k \ \mathrm d z}_{2\pi i\delta_{k,-1}\text{ by Remark before Theorem \ref{thm:cauchyintform}}} + \underbrace{\int_{\partial \mathbb B_r(z_1)} \phi_1 \ \mathrm d z}_{0\text{ by Cauchy}} \\
 &= 2\pi i c_{-1} = 2\pi i \text{ Res } f(z_1).
 \end{aligned}
 \]
